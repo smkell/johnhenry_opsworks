@@ -11,7 +11,7 @@ elasticsearch_user "elasticsearch"
 
 elasticsearch_install 'elasticsearch' do
   type :package
-  version '1.4.4'
+  version '2.1.0'
 end
 
 elasticsearch_configure 'elasticsearch' do 
