@@ -24,8 +24,7 @@ elasticsearch_configure 'elasticsearch' do
 
   configuration ({
     'cluster.name' => node['johnhenry']['elasticsearch']['cluster_name'],
-    'discovery.zen.ping.multicast.enabled' => false,
-    'discovery.zen.ping.unicast.hosts' => "[#{ips.join(',')}]"
+    'discovery.zen.ping.multicast.enabled' => false
   })
 end
 
