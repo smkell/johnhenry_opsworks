@@ -5,33 +5,21 @@ Chef::Log.info("********** Preparing to install and configure elasticsearch! ***
 #   Chef::Log.info("********** The instance's ID is '#{instance['instance_id']}' **********")
 # end
 
-include_recipe 'java::default'
+include_recipe 'java'
 
 elasticsearch_user "elasticsearch"
 
-elasticsearch_install 'elasticsearch' do
-  type :package
-  version '2.1.0'
-end
+elasticsearch_install 'elasticsearch'
 
 elasticsearch_configure 'elasticsearch' do 
-  dir node['johnhenry']['elasticsearch']['es_home']
-  path_conf node['johnhenry']['elasticsearch']['path_conf']
-  path_data node['johnhenry']['elasticsearch']['path_data']
-  path_logs node['johnhenry']['elasticsearch']['path_logs']
-
-  es_home '/usr/share'
-
+  path_data package: node['johnhenry']['elasticsearch']['path_data']
   configuration ({
+    'network.host' => '0.0.0.0',
     'cluster.name' => node['johnhenry']['elasticsearch']['cluster_name'],
-    'discovery.zen.ping.multicast.enabled' => false
   })
 end
 
-elasticsearch_service 'elasticsearch' do
-  path_conf node['johnhenry']['elasticsearch']['path_conf']
-  bindir "#{node['johnhenry']['elasticsearch']['es_home']}/elasticsearch/bin"
-end
+elasticsearch_service 'elasticsearch'
 
 service 'elasticsearch' do 
   action :start

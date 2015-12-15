@@ -1,4 +1,4 @@
-default['java']['jdk_version'] = '7'
+default['java']['jdk_version'] = '8'
 
 default['johnhenry']['elasticsearch']['cluster_name'] = 'johnhenry'
 default['johnhenry']['elasticsearch']['es_home']      = '/usr/share'
