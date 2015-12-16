@@ -10,10 +10,6 @@ platforms:
   - name: centos-7.1
 
 suites:
-  - name: default
-    run_list:
-      - recipe[johnhenry::default]
-    attributes:
   - name: elasticsearch
     run_list:
       - recipe[johnhenry::elasticsearch]
